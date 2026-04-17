@@ -6,6 +6,7 @@ using EcommerceAPI.Infrastructure.Services;
 using FluentValidation;
 using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Http.Features;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
@@ -43,7 +44,7 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
 builder.Services.AddAuthorization();
 
 // ── DI Services ───────────────────────────────────────────────────────────────
-builder.Services.AddScoped<IAuthService, AuthService>();
+builder.Services.AddScoped<IAuthService,    AuthService>();
 builder.Services.AddScoped<IProductService, ProductService>();
 
 // ── CORS ──────────────────────────────────────────────────────────────────────
@@ -57,6 +58,9 @@ builder.Services.AddCors(options =>
 builder.Services.AddControllers()
     .AddJsonOptions(opts =>
         opts.JsonSerializerOptions.Converters.Add(new System.Text.Json.Serialization.JsonStringEnumConverter()));
+
+builder.Services.Configure<FormOptions>(o => o.MultipartBodyLengthLimit = 5_242_880); // 5MB
+
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(c =>
 {
@@ -97,6 +101,7 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseExceptionHandler();
+app.UseStaticFiles();           // ← sirve wwwroot/images/products/
 app.UseHttpsRedirection();
 app.UseCors("Angular");
 app.UseAuthentication();
