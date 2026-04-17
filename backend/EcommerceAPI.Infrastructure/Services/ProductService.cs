@@ -114,8 +114,21 @@ public class ProductService(AppDbContext db) : IProductService
         Code        = p.Code,
         Name        = p.Name,
         Description = p.Description,
-        Size        = p.Size,
-        Color       = p.Color,
+        Size        = p.Size switch
+        {
+            Domain.Enums.ProductSize.Seven => "7",
+            Domain.Enums.ProductSize.Eight => "8",
+            Domain.Enums.ProductSize.Nine  => "9",
+            Domain.Enums.ProductSize.Ten   => "10",
+            _                              => p.Size.ToString()
+        },
+        Color       = p.Color switch
+        {
+            Domain.Enums.ProductColor.White => "Blanco",
+            Domain.Enums.ProductColor.Black => "Negro",
+            Domain.Enums.ProductColor.Gray  => "Gris",
+            _                               => p.Color.ToString()
+        },
         Price       = p.Price,
         Stock       = p.Stock,
         ImageUrl    = p.ImageUrl,
