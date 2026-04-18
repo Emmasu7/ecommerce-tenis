@@ -3,6 +3,7 @@ using System;
 using EcommerceAPI.Infrastructure.Persistence;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EcommerceAPI.Infrastructure.Persistence.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20260418030549_FixProductImages")]
+    partial class FixProductImages
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "9.0.15");
@@ -231,7 +234,7 @@ namespace EcommerceAPI.Infrastructure.Persistence.Migrations
                             Color = 2,
                             CreatedAt = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             Description = "La zapatilla más icónica de todos los tiempos, favorita desde 1917.",
-                            ImageUrl = "https://pplx-res.cloudinary.com/image/upload/pplx_search_images/060db9efed07b6790dbe0b6d21c98dec77c80f4b.jpg",
+                            ImageUrl = "https://images.unsplash.com/photo-1494496195158-c3bc975f9935?w=600&q=80",
                             IsActive = true,
                             Name = "Converse Chuck Taylor All Star",
                             Price = 199000m,
@@ -245,7 +248,7 @@ namespace EcommerceAPI.Infrastructure.Persistence.Migrations
                             Color = 2,
                             CreatedAt = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             Description = "Primera zapatilla con el Jazz Stripe de Vans, emblema del skate desde 1977.",
-                            ImageUrl = "https://pplx-res.cloudinary.com/image/upload/pplx_search_images/babb6084892da86491d0380d688b0e0f031c5050.jpg",
+                            ImageUrl = "https://images.unsplash.com/photo-1525966222134-fcfa99b8ae77?w=600&q=80",
                             IsActive = true,
                             Name = "Vans Old Skool",
                             Price = 219000m,

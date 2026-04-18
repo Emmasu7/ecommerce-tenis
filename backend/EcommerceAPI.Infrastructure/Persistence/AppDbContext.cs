@@ -21,46 +21,18 @@ public class AppDbContext : DbContext
         modelBuilder.Entity<User>(entity =>
         {
             entity.HasKey(u => u.Id);
-
-            entity.Property(u => u.FirstName)
-                  .IsRequired()
-                  .HasMaxLength(100);
-
-            entity.Property(u => u.LastName)
-                  .IsRequired()
-                  .HasMaxLength(100);
-
-            entity.Property(u => u.Email)
-                  .IsRequired()
-                  .HasMaxLength(150);
-
-            entity.HasIndex(u => u.Email)
-                  .IsUnique();
-
-            entity.Property(u => u.PasswordHash)
-                  .IsRequired();
-
-            entity.Property(u => u.Phone)
-                  .HasMaxLength(20);
-
-            entity.Property(u => u.Country)
-                  .HasMaxLength(100);
-
-            entity.Property(u => u.State)
-                  .HasMaxLength(100);
-
-            entity.Property(u => u.City)
-                  .HasMaxLength(100);
-
-            entity.Property(u => u.Address)
-                  .HasMaxLength(255);
-
-            entity.Property(u => u.Role)
-                  .HasConversion<int>();
-
-            entity.Property(u => u.CreatedAt)
-                  .HasDefaultValueSql("datetime('now')");
-
+            entity.Property(u => u.FirstName).IsRequired().HasMaxLength(100);
+            entity.Property(u => u.LastName).IsRequired().HasMaxLength(100);
+            entity.Property(u => u.Email).IsRequired().HasMaxLength(150);
+            entity.HasIndex(u => u.Email).IsUnique();
+            entity.Property(u => u.PasswordHash).IsRequired();
+            entity.Property(u => u.Phone).HasMaxLength(20);
+            entity.Property(u => u.Country).HasMaxLength(100);
+            entity.Property(u => u.State).HasMaxLength(100);
+            entity.Property(u => u.City).HasMaxLength(100);
+            entity.Property(u => u.Address).HasMaxLength(255);
+            entity.Property(u => u.Role).HasConversion<int>();
+            entity.Property(u => u.CreatedAt).HasDefaultValueSql("datetime('now')");
             entity.HasMany(u => u.Orders)
                   .WithOne(o => o.User)
                   .HasForeignKey(o => o.UserId)
@@ -71,39 +43,16 @@ public class AppDbContext : DbContext
         modelBuilder.Entity<Product>(entity =>
         {
             entity.HasKey(p => p.Id);
-
-            entity.Property(p => p.Code)
-                  .IsRequired()
-                  .HasMaxLength(50);
-
-            entity.HasIndex(p => p.Code)
-                  .IsUnique();
-
-            entity.Property(p => p.Name)
-                  .IsRequired()
-                  .HasMaxLength(150);
-
-            entity.Property(p => p.Description)
-                  .HasMaxLength(500);
-
-            entity.Property(p => p.Price)
-                  .HasColumnType("decimal(18,2)");
-
-            entity.Property(p => p.Size)
-                  .HasConversion<int>();
-
-            entity.Property(p => p.Color)
-                  .HasConversion<int>();
-
-            entity.Property(p => p.IsActive)
-                  .HasDefaultValue(true);
-
-            entity.Property(p => p.ImageUrl)
-                  .HasMaxLength(300);
-
-            entity.Property(p => p.CreatedAt)
-                  .HasDefaultValueSql("datetime('now')");
-
+            entity.Property(p => p.Code).IsRequired().HasMaxLength(50);
+            entity.HasIndex(p => p.Code).IsUnique();
+            entity.Property(p => p.Name).IsRequired().HasMaxLength(150);
+            entity.Property(p => p.Description).HasMaxLength(500);
+            entity.Property(p => p.Price).HasColumnType("decimal(18,2)");
+            entity.Property(p => p.Size).HasConversion<int>();
+            entity.Property(p => p.Color).HasConversion<int>();
+            entity.Property(p => p.IsActive).HasDefaultValue(true);
+            entity.Property(p => p.ImageUrl).HasMaxLength(300);
+            entity.Property(p => p.CreatedAt).HasDefaultValueSql("datetime('now')");
             entity.HasMany(p => p.OrderItems)
                   .WithOne(oi => oi.Product)
                   .HasForeignKey(oi => oi.ProductId)
@@ -114,23 +63,11 @@ public class AppDbContext : DbContext
         modelBuilder.Entity<Order>(entity =>
         {
             entity.HasKey(o => o.Id);
-
-            entity.Property(o => o.Status)
-                  .HasConversion<int>();
-
-            entity.Property(o => o.TotalAmount)
-                  .HasColumnType("decimal(18,2)");
-
-            entity.Property(o => o.ShippingAddress)
-                  .IsRequired()
-                  .HasMaxLength(255);
-
-            entity.Property(o => o.CreatedAt)
-                  .HasDefaultValueSql("datetime('now')");
-
-            entity.Property(o => o.UpdatedAt)
-                  .HasDefaultValueSql("datetime('now')");
-
+            entity.Property(o => o.Status).HasConversion<int>();
+            entity.Property(o => o.TotalAmount).HasColumnType("decimal(18,2)");
+            entity.Property(o => o.ShippingAddress).IsRequired().HasMaxLength(255);
+            entity.Property(o => o.CreatedAt).HasDefaultValueSql("datetime('now')");
+            entity.Property(o => o.UpdatedAt).HasDefaultValueSql("datetime('now')");
             entity.HasMany(o => o.OrderItems)
                   .WithOne(oi => oi.Order)
                   .HasForeignKey(oi => oi.OrderId)
@@ -141,12 +78,8 @@ public class AppDbContext : DbContext
         modelBuilder.Entity<OrderItem>(entity =>
         {
             entity.HasKey(oi => oi.Id);
-
-            entity.Property(oi => oi.UnitPrice)
-                  .HasColumnType("decimal(18,2)");
-
-            entity.Property(oi => oi.Subtotal)
-                  .HasColumnType("decimal(18,2)");
+            entity.Property(oi => oi.UnitPrice).HasColumnType("decimal(18,2)");
+            entity.Property(oi => oi.Subtotal).HasColumnType("decimal(18,2)");
         });
 
         // ── Seed Products ─────────────────────────────────────────────────────
@@ -176,7 +109,8 @@ public class AppDbContext : DbContext
                 Price       = 329000,
                 Stock       = 15,
                 IsActive    = true,
-                ImageUrl    = "https://static.nike.com/a/images/t_PDP_1280_v1/f_auto,q_auto:eco/350bcd75-d4e6-48b1-af35-a7faeecba8b5/air-force-1-07-shoes-WjmPLN.png",
+                // imagen corregida — CDN de shopwss confiable
+                ImageUrl    = "https://www.shopwss.com/cdn/shop/files/DD8959103_2.jpg?v=1732751405",
                 CreatedAt   = new DateTime(2025, 1, 1, 0, 0, 0, DateTimeKind.Utc)
             },
             new Product
@@ -246,7 +180,7 @@ public class AppDbContext : DbContext
                 Price       = 199000,
                 Stock       = 30,
                 IsActive    = true,
-                ImageUrl    = "https://www.converse.com/dw/image/v2/BCZC_PRD/on/demandware.static/-/Sites-cnv-master-catalog/default/dw2e84c4e7/images/a_107/101001_A_107X1.jpg",
+                ImageUrl    = "https://pplx-res.cloudinary.com/image/upload/pplx_search_images/060db9efed07b6790dbe0b6d21c98dec77c80f4b.jpg",
                 CreatedAt   = new DateTime(2025, 1, 1, 0, 0, 0, DateTimeKind.Utc)
             },
             new Product
@@ -260,7 +194,35 @@ public class AppDbContext : DbContext
                 Price       = 219000,
                 Stock       = 22,
                 IsActive    = true,
-                ImageUrl    = "https://images.vans.com/is/image/Vans/VN000D3HY28-HERO?$583x583$",
+                ImageUrl    = "https://pplx-res.cloudinary.com/image/upload/pplx_search_images/babb6084892da86491d0380d688b0e0f031c5050.jpg",
+                CreatedAt   = new DateTime(2025, 1, 1, 0, 0, 0, DateTimeKind.Utc)
+            },
+            new Product
+            {
+                Id          = 9,
+                Code        = "NK-FREE-7-GRY",
+                Name        = "Nike Free Run 5.0",
+                Description = "Suela flexible que imita el movimiento natural del pie. Ultraligera y transpirable para entrenamientos dinámicos.",
+                Size        = ProductSize.Seven,
+                Color       = ProductColor.Gray,
+                Price       = 319000,
+                Stock       = 14,
+                IsActive    = true,
+                ImageUrl    = "https://pplx-res.cloudinary.com/image/upload/pplx_search_images/322508958aebc893b8fb63d49c00637a91b2c142.jpg",
+                CreatedAt   = new DateTime(2025, 1, 1, 0, 0, 0, DateTimeKind.Utc)
+            },
+            new Product
+            {
+                Id          = 10,
+                Code        = "AD-GAZL-8-WHT",
+                Name        = "Adidas Gazelle",
+                Description = "Clásico de los años 60 reinventado. Corte de gamuza suave con la icónica franja de las 3 bandas en el lateral.",
+                Size        = ProductSize.Eight,
+                Color       = ProductColor.White,
+                Price       = 269000,
+                Stock       = 16,
+                IsActive    = true,
+                ImageUrl    = "https://pplx-res.cloudinary.com/image/upload/pplx_search_images/aeb3d9dd0deaa0997915073f7fe86e4477f94938.jpg",
                 CreatedAt   = new DateTime(2025, 1, 1, 0, 0, 0, DateTimeKind.Utc)
             }
         );
