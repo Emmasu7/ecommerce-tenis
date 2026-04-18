@@ -11,10 +11,18 @@ public class ProductService(AppDbContext db) : IProductService
 {
     public async Task<PagedResult<ProductDto>> GetAllAsync(ProductFilterDto filter)
     {
-        // Only active products are visible to the catalog
         var query = db.Products
             .Where(p => p.IsActive)
             .AsQueryable();
+
+        if (!string.IsNullOrWhiteSpace(filter.Search))
+        {
+            var search = filter.Search.Trim().ToLower();
+
+            query = query.Where(p =>
+                p.Name.ToLower().Contains(search) ||
+                p.Code.ToLower().Contains(search));
+        }
 
         if (filter.Size.HasValue)
             query = query.Where(p => p.Size == filter.Size.Value);
@@ -39,10 +47,10 @@ public class ProductService(AppDbContext db) : IProductService
 
         return new PagedResult<ProductDto>
         {
-            Items      = items,
+            Items = items,
             TotalCount = totalCount,
-            Page       = filter.Page,
-            PageSize   = filter.PageSize
+            Page = filter.Page,
+            PageSize = filter.PageSize
         };
     }
 

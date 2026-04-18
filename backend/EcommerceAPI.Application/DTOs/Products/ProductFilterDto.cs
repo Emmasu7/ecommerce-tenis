@@ -4,6 +4,7 @@ namespace EcommerceAPI.Application.DTOs.Products;
 
 public class ProductFilterDto
 {
+    public string?       Search    { get; set; }
     public ProductSize?  Size      { get; set; }
     public ProductColor? Color     { get; set; }
     public decimal?      MinPrice  { get; set; }
