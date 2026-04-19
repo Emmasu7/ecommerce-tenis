@@ -19,10 +19,10 @@ public class JwtTokenGenerator(IConfiguration config) : IJwtTokenGenerator
 
         var claims = new[]
         {
-            new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
-            new Claim(ClaimTypes.Email,          user.Email),
-            new Claim(ClaimTypes.Role,           user.Role.ToString()),
-            new Claim("FullName", $"{user.FirstName} {user.LastName}")
+            new Claim("sub",      user.Id.ToString()),
+            new Claim("email",    user.Email),            
+            new Claim("role",     user.Role.ToString()),  
+            new Claim("fullName", $"{user.FirstName} {user.LastName}") 
         };
 
         var token = new JwtSecurityToken(
