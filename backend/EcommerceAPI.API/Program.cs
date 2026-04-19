@@ -1,8 +1,12 @@
 using System.Text;
 using EcommerceAPI.Application.Interfaces;
+using EcommerceAPI.Application.Interfaces.Repositories;
+using EcommerceAPI.Application.Interfaces.Security;
+using EcommerceAPI.Application.Services;
 using EcommerceAPI.Application.Validators.Auth;
 using EcommerceAPI.Infrastructure.Persistence;
-using EcommerceAPI.Infrastructure.Services;
+using EcommerceAPI.Infrastructure.Repositories;
+using EcommerceAPI.Infrastructure.Security;
 using FluentValidation;
 using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -12,19 +16,24 @@ using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using EcommerceAPI.API;
 
+
 var builder = WebApplication.CreateBuilder(args);
+
 
 // ── Database ──────────────────────────────────────────────────────────────────
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection")));
 
+
 // ── FluentValidation ──────────────────────────────────────────────────────────
 builder.Services.AddFluentValidationAutoValidation();
 builder.Services.AddValidatorsFromAssemblyContaining<RegisterRequestValidator>();
 
+
 // ── JWT Authentication ────────────────────────────────────────────────────────
 var jwtSection = builder.Configuration.GetSection("Jwt");
 var secretKey  = jwtSection["SecretKey"]!;
+
 
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddJwtBearer(options =>
@@ -43,10 +52,22 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
 
 builder.Services.AddAuthorization();
 
+
 // ── DI Services ───────────────────────────────────────────────────────────────
+// Security
+builder.Services.AddScoped<IPasswordHasher,    PasswordHasher>();
+builder.Services.AddScoped<IJwtTokenGenerator, JwtTokenGenerator>();
+
+// Repositories
+builder.Services.AddScoped<IUserRepository,    UserRepository>();
+builder.Services.AddScoped<IProductRepository, ProductRepository>();
+builder.Services.AddScoped<IOrderRepository,   OrderRepository>();
+
+// Application Services
 builder.Services.AddScoped<IAuthService,    AuthService>();
 builder.Services.AddScoped<IProductService, ProductService>();
-builder.Services.AddScoped<IOrderService,   OrderService>(); 
+builder.Services.AddScoped<IOrderService,   OrderService>();
+
 
 // ── CORS ──────────────────────────────────────────────────────────────────────
 builder.Services.AddCors(options =>
@@ -54,6 +75,7 @@ builder.Services.AddCors(options =>
         policy.WithOrigins("http://localhost:4200")
               .AllowAnyHeader()
               .AllowAnyMethod()));
+
 
 // ── Controllers + Swagger ─────────────────────────────────────────────────────
 builder.Services.AddControllers()
@@ -89,11 +111,14 @@ builder.Services.AddSwaggerGen(c =>
     });
 });
 
+
 // ── Global Exception Handler ──────────────────────────────────────────────────
 builder.Services.AddProblemDetails();
 builder.Services.AddExceptionHandler<GlobalExceptionHandler>();
 
+
 var app = builder.Build();
+
 
 if (app.Environment.IsDevelopment())
 {
@@ -109,11 +134,13 @@ app.UseAuthentication();
 app.UseAuthorization();
 app.MapControllers();
 
+
 // ── Auto-migrate on startup ───────────────────────────────────────────────────
 using (var scope = app.Services.CreateScope())
 {
     var db = scope.ServiceProvider.GetRequiredService<AppDbContext>();
     db.Database.Migrate();
 }
+
 
 app.Run();
