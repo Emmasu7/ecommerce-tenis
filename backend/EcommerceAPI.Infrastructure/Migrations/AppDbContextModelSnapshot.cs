@@ -3,19 +3,16 @@ using System;
 using EcommerceAPI.Infrastructure.Persistence;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
-using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
 
-namespace EcommerceAPI.Infrastructure.Persistence.Migrations
+namespace EcommerceAPI.Infrastructure.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20260418021732_UpdateProductSeed")]
-    partial class UpdateProductSeed
+    partial class AppDbContextModelSnapshot : ModelSnapshot
     {
-        /// <inheritdoc />
-        protected override void BuildTargetModel(ModelBuilder modelBuilder)
+        protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "9.0.15");
@@ -234,7 +231,7 @@ namespace EcommerceAPI.Infrastructure.Persistence.Migrations
                             Color = 2,
                             CreatedAt = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             Description = "La zapatilla más icónica de todos los tiempos, favorita desde 1917.",
-                            ImageUrl = "https://images.unsplash.com/photo-1494496195158-c3bc975f9935?w=600&q=80",
+                            ImageUrl = "https://pplx-res.cloudinary.com/image/upload/pplx_search_images/060db9efed07b6790dbe0b6d21c98dec77c80f4b.jpg",
                             IsActive = true,
                             Name = "Converse Chuck Taylor All Star",
                             Price = 199000m,
@@ -248,7 +245,7 @@ namespace EcommerceAPI.Infrastructure.Persistence.Migrations
                             Color = 2,
                             CreatedAt = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             Description = "Primera zapatilla con el Jazz Stripe de Vans, emblema del skate desde 1977.",
-                            ImageUrl = "https://images.unsplash.com/photo-1525966222134-fcfa99b8ae77?w=600&q=80",
+                            ImageUrl = "https://pplx-res.cloudinary.com/image/upload/pplx_search_images/babb6084892da86491d0380d688b0e0f031c5050.jpg",
                             IsActive = true,
                             Name = "Vans Old Skool",
                             Price = 219000m,
@@ -262,7 +259,7 @@ namespace EcommerceAPI.Infrastructure.Persistence.Migrations
                             Color = 3,
                             CreatedAt = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             Description = "Suela flexible que imita el movimiento natural del pie. Ultraligera y transpirable para entrenamientos dinámicos.",
-                            ImageUrl = "https://images.unsplash.com/photo-1560769629-975ec94e6a86?w=600&q=80",
+                            ImageUrl = "https://pplx-res.cloudinary.com/image/upload/pplx_search_images/322508958aebc893b8fb63d49c00637a91b2c142.jpg",
                             IsActive = true,
                             Name = "Nike Free Run 5.0",
                             Price = 319000m,
@@ -276,7 +273,7 @@ namespace EcommerceAPI.Infrastructure.Persistence.Migrations
                             Color = 1,
                             CreatedAt = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             Description = "Clásico de los años 60 reinventado. Corte de gamuza suave con la icónica franja de las 3 bandas en el lateral.",
-                            ImageUrl = "https://images.unsplash.com/photo-1539185441755-769473a23570?w=600&q=80",
+                            ImageUrl = "https://pplx-res.cloudinary.com/image/upload/pplx_search_images/aeb3d9dd0deaa0997915073f7fe86e4477f94938.jpg",
                             IsActive = true,
                             Name = "Adidas Gazelle",
                             Price = 269000m,

@@ -8,10 +8,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
 
-namespace EcommerceAPI.Infrastructure.Persistence.Migrations
+namespace EcommerceAPI.Infrastructure.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20260416235017_InitialCreate")]
+    [Migration("20260419033339_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -141,6 +141,148 @@ namespace EcommerceAPI.Infrastructure.Persistence.Migrations
                         .IsUnique();
 
                     b.ToTable("Products");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Code = "NK-AM270-10-BLK",
+                            Color = 2,
+                            CreatedAt = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "Zapatilla lifestyle con la unidad Air Max más grande hasta la fecha.",
+                            ImageUrl = "https://static.nike.com/a/images/t_PDP_1280_v1/f_auto,q_auto:eco/skwgyqrbfzhu6uyeh0gg/air-max-270-shoes-2V5C4p.png",
+                            IsActive = true,
+                            Name = "Nike Air Max 270",
+                            Price = 389000m,
+                            Size = 10,
+                            Stock = 20
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Code = "NK-AF1-9-WHT",
+                            Color = 1,
+                            CreatedAt = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "Ícono del baloncesto reconvertido en clásico urbano desde 1982.",
+                            ImageUrl = "https://www.shopwss.com/cdn/shop/files/DD8959103_2.jpg?v=1732751405",
+                            IsActive = true,
+                            Name = "Nike Air Force 1",
+                            Price = 329000m,
+                            Size = 9,
+                            Stock = 15
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Code = "AD-UB22-10-BLK",
+                            Color = 2,
+                            CreatedAt = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "Running de alto rendimiento con entresuela BOOST para máxima energía.",
+                            ImageUrl = "https://assets.adidas.com/images/h_840,f_auto,q_auto/fbaf991a78bc4896a3e9ad7800abcec6_9366/Ultraboost_22_Shoes_Black_GZ0127_01_standard.jpg",
+                            IsActive = true,
+                            Name = "Adidas Ultraboost 22",
+                            Price = 449000m,
+                            Size = 10,
+                            Stock = 12
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Code = "AD-SS-8-WHT",
+                            Color = 1,
+                            CreatedAt = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "La zapatilla de tenis que se convirtió en leyenda del streetwear global.",
+                            ImageUrl = "https://assets.adidas.com/images/h_840,f_auto,q_auto/7ed0855435194229a525aad6009a0497_9366/Stan_Smith_Shoes_White_FX5502_01_standard.jpg",
+                            IsActive = true,
+                            Name = "Adidas Stan Smith",
+                            Price = 279000m,
+                            Size = 8,
+                            Stock = 25
+                        },
+                        new
+                        {
+                            Id = 5,
+                            Code = "NB-574-9-GRY",
+                            Color = 3,
+                            CreatedAt = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "Silhouette retro con tecnología ENCAP para confort duradero todo el día.",
+                            ImageUrl = "https://nb.scene7.com/is/image/NB/ml574evg_nb_02_i?$pdpflexf2$&qlt=80&fmt=webp&wid=880&hei=880",
+                            IsActive = true,
+                            Name = "New Balance 574",
+                            Price = 299000m,
+                            Size = 9,
+                            Stock = 18
+                        },
+                        new
+                        {
+                            Id = 6,
+                            Code = "PM-RSX-8-WHT",
+                            Color = 1,
+                            CreatedAt = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "Diseño chunky futurista con tecnología RS de amortiguación en carrera.",
+                            ImageUrl = "https://images.puma.com/image/upload/f_auto,q_auto,b_rgb:fafafa,w_600,h_600/global/369666/01/sv01/fnd/PNA/fmt/png/RS-X-Sneakers",
+                            IsActive = true,
+                            Name = "Puma RS-X",
+                            Price = 259000m,
+                            Size = 8,
+                            Stock = 10
+                        },
+                        new
+                        {
+                            Id = 7,
+                            Code = "CV-CTAS-7-BLK",
+                            Color = 2,
+                            CreatedAt = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "La zapatilla más icónica de todos los tiempos, favorita desde 1917.",
+                            ImageUrl = "https://pplx-res.cloudinary.com/image/upload/pplx_search_images/060db9efed07b6790dbe0b6d21c98dec77c80f4b.jpg",
+                            IsActive = true,
+                            Name = "Converse Chuck Taylor All Star",
+                            Price = 199000m,
+                            Size = 7,
+                            Stock = 30
+                        },
+                        new
+                        {
+                            Id = 8,
+                            Code = "VN-OS-9-BLK",
+                            Color = 2,
+                            CreatedAt = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "Primera zapatilla con el Jazz Stripe de Vans, emblema del skate desde 1977.",
+                            ImageUrl = "https://pplx-res.cloudinary.com/image/upload/pplx_search_images/babb6084892da86491d0380d688b0e0f031c5050.jpg",
+                            IsActive = true,
+                            Name = "Vans Old Skool",
+                            Price = 219000m,
+                            Size = 9,
+                            Stock = 22
+                        },
+                        new
+                        {
+                            Id = 9,
+                            Code = "NK-FREE-7-GRY",
+                            Color = 3,
+                            CreatedAt = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "Suela flexible que imita el movimiento natural del pie. Ultraligera y transpirable para entrenamientos dinámicos.",
+                            ImageUrl = "https://pplx-res.cloudinary.com/image/upload/pplx_search_images/322508958aebc893b8fb63d49c00637a91b2c142.jpg",
+                            IsActive = true,
+                            Name = "Nike Free Run 5.0",
+                            Price = 319000m,
+                            Size = 7,
+                            Stock = 14
+                        },
+                        new
+                        {
+                            Id = 10,
+                            Code = "AD-GAZL-8-WHT",
+                            Color = 1,
+                            CreatedAt = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "Clásico de los años 60 reinventado. Corte de gamuza suave con la icónica franja de las 3 bandas en el lateral.",
+                            ImageUrl = "https://pplx-res.cloudinary.com/image/upload/pplx_search_images/aeb3d9dd0deaa0997915073f7fe86e4477f94938.jpg",
+                            IsActive = true,
+                            Name = "Adidas Gazelle",
+                            Price = 269000m,
+                            Size = 8,
+                            Stock = 16
+                        });
                 });
 
             modelBuilder.Entity("EcommerceAPI.Domain.Entities.User", b =>

@@ -2,8 +2,8 @@ namespace EcommerceAPI.Domain.Enums;
 
 public enum ProductSize
 {
-    Seven = 7,
-    Eight = 8,
-    Nine  = 9,
-    Ten   = 10
+    S7 = 7,
+    S8 = 8,
+    S9  = 9,
+    S10   = 10
 }
