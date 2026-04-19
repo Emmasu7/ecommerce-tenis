@@ -260,7 +260,7 @@ Formato de respuesta estándar:
 - Diseño responsive.
 - Separación de responsabilidades.
 
-## Troubleshooting
+## Solución de problemas
 
 ### El frontend no conecta con el backend
 Verifica que la API esté ejecutándose en `https://localhost:5296` y que el archivo `environment.ts` del frontend tenga configurada la URL correcta.
@@ -284,6 +284,10 @@ Se recomienda incluir una colección de Postman en `docs/` para validar:
 - productos;
 - órdenes;
 - panel administrativo.
+
+## Licencia
+
+Este proyecto fue desarrollado con fines académicos como parte de una evaluación técnica en la Universidad EAFIT.
 
 ## Notas finales
 
