@@ -134,6 +134,22 @@ La aplicación Angular está organizada por responsabilidad funcional:
 - **Soft delete** en productos usando `Products.IsActive = false`.
 - **Estados de orden**: `En proceso`, `Pagado`, `Enviado`, `Entregado`.
 
+## Supuestos y consideraciones adicionales
+
+Para completar el alcance del MVP y resolver aspectos no definidos explícitamente en el enunciado, se adoptaron los siguientes supuestos de implementación:
+
+- El carrito de compras se maneja exclusivamente en `localStorage`, sin persistencia en base de datos, para mantener una solución ligera y alineada con el alcance de la prueba.
+- Los usuarios registrados se crean con rol `client` por defecto. El rol `admin` se asigna manualmente en base de datos para pruebas locales del panel administrativo.
+- La compra se realiza bajo el modelo de pago contra entrega, por lo que no se implementa integración con pasarelas de pago ni procesamiento de transacciones electrónicas.
+- Cada producto maneja una única imagen principal mediante el campo `ImageUrl`, sin soporte para galería múltiple.
+- El precio unitario de cada producto se congela en `OrderItems.UnitPrice` al momento de crear la orden, con el fin de preservar el historial de compra.
+- El stock se descuenta al crear la orden, asumiendo que la confirmación de compra reserva inmediatamente el inventario.
+- La eliminación de productos se implementa mediante borrado lógico usando `IsActive = false`, evitando pérdida de trazabilidad y manteniendo integridad referencial.
+- Los estados de orden se limitan a `En proceso`, `Pagado`, `Enviado` y `Entregado`, de acuerdo con el alcance funcional definido para el MVP.
+- La autenticación se implementa con JWT Bearer Token y expiración de 24 horas, usando BCrypt para el almacenamiento seguro de contraseñas.
+- Se utilizan identificadores enteros autoincrementales en todas las entidades para simplificar el modelo relacional y mantener compatibilidad con SQLite.
+- La validación funcional del backend se complementa con Swagger y una colección de Postman incluida en la carpeta `docs/`.
+
 ## Instalación local
 
 ### Requisitos
@@ -244,7 +260,7 @@ La carpeta `docs/` contiene los diagramas de soporte del proyecto:
 
 ## Postman
 
-Se recomienda incluir una colección de Postman en `docs/` para validar:
+Se incluye una colección de Postman en `docs/` para validar:
 - autenticación;
 - productos;
 - órdenes;
@@ -252,7 +268,7 @@ Se recomienda incluir una colección de Postman en `docs/` para validar:
 
 ## Licencia
 
-Este proyecto fue desarrollado con fines académicos como parte de una evaluación técnica en la Universidad EAFIT.
+Este proyecto fue desarrollado con fines académicos como parte de una evaluación técnica de la Universidad EAFIT.
 
 ## Notas finales
 
