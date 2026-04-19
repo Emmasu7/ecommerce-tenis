@@ -4,7 +4,11 @@
 
 # ── IDE ───────────────────────────────────────────────────────────────────────
 .vs/
-.vscode/
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
 *.user
 *.suo
 
@@ -22,9 +26,11 @@ appsettings.Development.json
 !**/wwwroot/images/products/.gitkeep
 
 # ── Angular ───────────────────────────────────────────────────────────────────
-node_modules/
-dist/
-.angular/
+**/node_modules/
+**/dist/
+**/.angular/
+**/coverage/
+**/out-tsc/
 
 # ── OS ────────────────────────────────────────────────────────────────────────
 .DS_Store
