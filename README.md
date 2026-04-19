@@ -177,41 +177,6 @@ Archivos principales:
 - `backend/EcommerceAPI.API/appsettings.json`
 - `backend/EcommerceAPI.API/appsettings.Development.json`
 
-### appsettings.json
-```json
-{
-  "Logging": {
-    "LogLevel": {
-      "Default": "Information",
-      "Microsoft.AspNetCore": "Warning"
-    }
-  },
-  "AllowedHosts": "*",
-  "ConnectionStrings": {
-    "DefaultConnection": "Data Source=ecommerce.db"
-  },
-  "Jwt": {
-    "SecretKey": "EcommerceEAFIT2026SuperSecretKey256bits!!",
-    "Issuer": "EcommerceAPI",
-    "Audience": "EcommerceClient",
-    "ExpirationHours": 24
-  }
-}
-```
-
-### appsettings.Development.json
-```json
-{
-  "Logging": {
-    "LogLevel": {
-      "Default": "Information",
-      "Microsoft.AspNetCore": "Warning",
-      "Microsoft.EntityFrameworkCore.Database.Command": "Information"
-    }
-  }
-}
-```
-
 ### Nota sobre roles
 Los usuarios se crean con rol `client` por defecto. Para probar el panel administrativo, el rol debe cambiarse manualmente a `admin` en la base de datos usando DB Browser for SQLite.
 
