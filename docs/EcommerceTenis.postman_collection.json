@@ -84,7 +84,7 @@
         "header": [],
         "body": {
           "mode": "raw",
-          "raw": "{\r\n  \"email\": \"segurodj@gmail.com\",\r\n  \"password\": \"Emseur20072002*\"\r\n}",
+          "raw": "{\r\n  \"email\": \"segurodj@gmail.com\",\r\n  \"password\": \"\r\n}",
           "options": {
             "raw": {
               "language": "json"
